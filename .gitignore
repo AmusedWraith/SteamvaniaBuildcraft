@@ -21,3 +21,10 @@ run
 
 #mac
 .DS_Store
+modules/buildcraft-7.1.23-transport.jar
+modules/buildcraft-7.1.23-silicon.jar
+modules/buildcraft-7.1.23-robotics.jar
+modules/buildcraft-7.1.23-factory.jar
+modules/buildcraft-7.1.23-energy.jar
+modules/buildcraft-7.1.23-core.jar
+modules/buildcraft-7.1.23-builders.jar
