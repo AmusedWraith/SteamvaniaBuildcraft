@@ -12,49 +12,19 @@ import buildcraft.api.core.BCLog;
 import buildcraft.api.fuels.ICoolant;
 import buildcraft.core.IMCHandler;
 import buildcraft.energy.fuels.CoolantManager;
-import buildcraft.energy.worldgen.OilPopulate;
+
 
 public class IMCHandlerEnergy extends IMCHandler {
 	@Override
 	public void processIMCEvent(IMCEvent event, IMCMessage m) {
-		if (m.key.equals("oil-lake-biome")) {
-			processOilLakeBiomeIMC(event, m);
-		} else if (m.key.equals("oil-gen-exclude")) {
-			processOilGenExcludeIMC(event, m);
-		} else if (m.key.equals("add-coolant")) {
+		 if (m.key.equals("add-coolant")) {
 			processCoolantAddIMC(event, m);
 		} else if (m.key.equals("remove-coolant")) {
 			processCoolantRemoveIMC(event, m);
 		}
 	}
 
-	public static void processOilLakeBiomeIMC(IMCEvent event, IMCMessage m) {
-		try {
-			String biomeID = m.getStringValue().trim();
-			int id = Integer.valueOf(biomeID);
-			if (id >= BiomeGenBase.getBiomeGenArray().length) {
-				throw new IllegalArgumentException("Biome ID must be less than " + BiomeGenBase.getBiomeGenArray().length);
-			}
-			OilPopulate.INSTANCE.surfaceDepositBiomes.add(id);
-		} catch (Exception ex) {
-			BCLog.logger.warn(String.format("Received an invalid oil-lake-biome request %s from mod %s", m.getStringValue(), m.getSender()));
-		}
-		BCLog.logger.info(String.format("Received a successful oil-lake-biome request %s from mod %s", m.getStringValue(), m.getSender()));
-	}
 
-	public static void processOilGenExcludeIMC(IMCEvent event, IMCMessage m) {
-		try {
-			String biomeID = m.getStringValue().trim();
-			int id = Integer.valueOf(biomeID);
-			if (id >= BiomeGenBase.getBiomeGenArray().length) {
-				throw new IllegalArgumentException("Biome ID must be less than " + BiomeGenBase.getBiomeGenArray().length);
-			}
-			OilPopulate.INSTANCE.excludedBiomes.add(id);
-		} catch (Exception ex) {
-			BCLog.logger.warn(String.format("Received an invalid oil-gen-exclude request %s from mod %s", m.getStringValue(), m.getSender()));
-		}
-		BCLog.logger.info(String.format("Received a successful oil-gen-exclude request %s from mod %s", m.getStringValue(), m.getSender()));
-	}
 
 	public static void processCoolantAddIMC(IMCEvent event, IMCMessage m) {
 		boolean failed = false;

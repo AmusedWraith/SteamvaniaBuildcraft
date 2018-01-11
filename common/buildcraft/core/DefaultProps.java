@@ -27,8 +27,6 @@ public final class DefaultProps {
 	public static double PIPES_DURABILITY = 0.25D;
 	public static int PIPES_FLUIDS_BASE_FLOW_RATE = 10;
 
-	public static int BIOME_OIL_OCEAN = 126;
-	public static int BIOME_OIL_DESERT = 127;
 
 	/**
 	 * Deactivate constructor
