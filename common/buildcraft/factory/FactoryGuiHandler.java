@@ -17,10 +17,8 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import buildcraft.core.GuiIds;
 import buildcraft.factory.gui.ContainerAutoWorkbench;
 import buildcraft.factory.gui.ContainerHopper;
-import buildcraft.factory.gui.ContainerRefinery;
 import buildcraft.factory.gui.GuiAutoCrafting;
 import buildcraft.factory.gui.GuiHopper;
-import buildcraft.factory.gui.GuiRefinery;
 
 public class FactoryGuiHandler implements IGuiHandler {
 
@@ -42,12 +40,6 @@ public class FactoryGuiHandler implements IGuiHandler {
 					return new GuiAutoCrafting(player.inventory, world, (TileAutoWorkbench) tile);
 				}
 
-			case GuiIds.REFINERY:
-				if (!(tile instanceof TileRefinery)) {
-					return null;
-				} else {
-					return new GuiRefinery(player.inventory, (TileRefinery) tile);
-				}
 
 			case GuiIds.HOPPER:
 				if (!(tile instanceof TileHopper)) {
@@ -79,12 +71,7 @@ public class FactoryGuiHandler implements IGuiHandler {
 					return new ContainerAutoWorkbench(player.inventory, (TileAutoWorkbench) tile);
 				}
 
-			case GuiIds.REFINERY:
-				if (!(tile instanceof TileRefinery)) {
-					return null;
-				} else {
-					return new ContainerRefinery(player.inventory, (TileRefinery) tile);
-				}
+
 
 			case GuiIds.HOPPER:
 				if (!(tile instanceof TileHopper)) {

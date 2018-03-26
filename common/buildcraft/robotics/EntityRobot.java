@@ -179,8 +179,8 @@ public class EntityRobot extends EntityRobotBase implements
 		laser.isVisible = false;
 		entityCollisionReduction = 1F;
 
-		width = 0.25F;
-		height = 0.25F;
+		width = 1.4F;
+		height = 2.9F;
 	}
 
 	@Override
