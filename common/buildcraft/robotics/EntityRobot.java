@@ -99,7 +99,7 @@ import buildcraft.robotics.statements.ActionRobotWorkInArea;
 import buildcraft.robotics.statements.ActionRobotWorkInArea.AreaType;
 
 public class EntityRobot extends EntityRobotBase implements
-		IEntityAdditionalSpawnData, IInventory, IFluidHandler, ICommandReceiver, IDebuggable {
+		IEntityAdditionalSpawnData, IInventory,  ICommandReceiver, IDebuggable {
 
 	public static final ResourceLocation ROBOT_BASE = new ResourceLocation(
 			DefaultProps.TEXTURE_PATH_ROBOTS + "/robot_base.png");
