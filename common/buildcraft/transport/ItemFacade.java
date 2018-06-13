@@ -45,7 +45,7 @@ import buildcraft.api.transport.PipeWire;
 import buildcraft.api.transport.pluggable.IPipePluggableItem;
 import buildcraft.api.transport.pluggable.PipePluggable;
 import buildcraft.core.BCCreativeTab;
-import buildcraft.core.BlockSpring;
+
 import buildcraft.core.lib.items.ItemBuildCraft;
 import buildcraft.core.lib.utils.StringUtils;
 import buildcraft.core.proxy.CoreProxy;
@@ -348,7 +348,7 @@ public class ItemFacade extends ItemBuildCraft implements IFacadeItem, IPipePlug
 				return false;
 			}
 
-			if (block instanceof BlockSpring || block instanceof BlockGenericPipe) {
+			if (block instanceof BlockGenericPipe) {
 				return false;
 			}
 

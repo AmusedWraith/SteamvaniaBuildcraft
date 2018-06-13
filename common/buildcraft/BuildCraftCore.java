@@ -72,7 +72,6 @@ import buildcraft.core.BlockBuildTool;
 import buildcraft.core.BlockEngine;
 import buildcraft.core.BlockMarker;
 import buildcraft.core.BlockPathMarker;
-import buildcraft.core.BlockSpring;
 import buildcraft.core.CompatHooks;
 import buildcraft.core.CoreGuiHandler;
 import buildcraft.core.CoreIconProvider;
@@ -84,10 +83,8 @@ import buildcraft.core.ItemGear;
 import buildcraft.core.ItemList;
 import buildcraft.core.ItemMapLocation;
 import buildcraft.core.ItemPaintbrush;
-import buildcraft.core.ItemSpring;
 import buildcraft.core.ItemWrench;
 import buildcraft.core.SchematicEngine;
-import buildcraft.core.SpringPopulate;
 import buildcraft.core.TickHandlerCore;
 import buildcraft.core.TileEngineWood;
 import buildcraft.core.TilePathMarker;
@@ -205,7 +202,7 @@ public class BuildCraftCore extends BuildCraftMod {
 	public static BlockEngine engineBlock;
 	public static BlockMarker markerBlock;
 	public static BlockPathMarker pathMarkerBlock;
-	public static Block springBlock;
+
 	public static BlockBuildTool buildToolBlock;
 	public static Item woodenGearItem;
 	public static Item stoneGearItem;
@@ -320,8 +317,7 @@ public class BuildCraftCore extends BuildCraftMod {
 		mainConfigManager.register("general.pumpsConsumeWater", false, "Should pumps consume water? Enabling this might cause performance issues!", ConfigManager.RestartRequirement.NONE);
 		mainConfigManager.register("power.miningUsageMultiplier", 1.0D, "What should the multiplier of all mining-related power usage be?", ConfigManager.RestartRequirement.NONE);
 		mainConfigManager.register("display.colorBlindMode", false, "Should I enable colorblind mode?", ConfigManager.RestartRequirement.GAME);
-		mainConfigManager.register("worldgen.generateWaterSprings", true, "Should BuildCraft generate water springs?", ConfigManager.RestartRequirement.GAME);
-
+		
 		reloadConfig(ConfigManager.RestartRequirement.GAME);
 
 		wrenchItem = (new ItemWrench()).setUnlocalizedName("wrenchItem");
@@ -335,12 +331,6 @@ public class BuildCraftCore extends BuildCraftMod {
 
 		debuggerItem = (new ItemDebugger()).setUnlocalizedName("debugger");
 		BCRegistry.INSTANCE.registerItem(debuggerItem, false);
-
-		if (BuildCraftCore.modifyWorld) {
-			BlockSpring.EnumSpring.WATER.canGen = BuildCraftCore.mainConfigManager.get("worldgen.generateWaterSprings").getBoolean();
-			springBlock = new BlockSpring().setBlockName("eternalSpring");
-			BCRegistry.INSTANCE.registerBlock(springBlock, ItemSpring.class, false);
-		}
 
 		woodenGearItem = (new ItemGear()).setUnlocalizedName("woodenGearItem");
 		if (BCRegistry.INSTANCE.registerItem(woodenGearItem, false)) {
@@ -432,9 +422,7 @@ public class BuildCraftCore extends BuildCraftMod {
 		StatementManager.registerTriggerProvider(new DefaultTriggerProvider());
 		StatementManager.registerActionProvider(new DefaultActionProvider());
 
-		if (BuildCraftCore.modifyWorld) {
-			MinecraftForge.EVENT_BUS.register(new SpringPopulate());
-		}
+	
 
 		if (mainConfiguration.hasChanged()) {
 			mainConfiguration.save();
